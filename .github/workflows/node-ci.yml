@@ -1,0 +1,43 @@
+name: CI/CD para Node.js
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: 🔧 Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Instalar dependencias
+        run: npm install
+
+      - name: 🧪 Ejecutar tests
+        run: npm test
+
+      - name: 🚀 Desplegar al servidor
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "."
+          target: "/var/www/mi-app"
+          strip_components: 1
+
+      - name: 🔁 Reiniciar app con PM2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            pm2 reload all || pm2 start /var/www/mi-app/app.js --name mi-app
