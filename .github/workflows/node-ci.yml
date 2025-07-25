@@ -22,6 +22,7 @@ jobs:
 
       - name: 🧪 Sin tests definidos
         run: echo "No hay tests definidos. Saltando..."
+
       - name: 🚀 Desplegar al servidor
         uses: appleboy/scp-action@v0.1.4
         with:

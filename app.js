@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 
 // Iniciar servidor
 app.listen(PORT, () => {
-  console.log(`🚀🚀🚀 Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`🚀🚀🚀 Servidor corriendo en http://localhost:${PORT} 🚀🚀🚀`);
 });
 
 module.exports = app; // para los tests si los usas
