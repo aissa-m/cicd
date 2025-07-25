@@ -40,4 +40,4 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            pm2 reload all || pm2 start /var/www/mi-app/app.js --name mi-app
+            /root/.nvm/versions/node/v18.20.8/bin/pm2 reload all || /root/.nvm/versions/node/v18.20.8/bin/pm2 start /var/www/mi-app/app.js --name mi-app
