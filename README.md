@@ -13,3 +13,5 @@ DATABASE_URL="postgresql://postgres:root@localhost:5432/maurizone_local?schema=p
 
 JWT_SECRET="supersecret"
 JWT_EXPIRES_IN="7d"
+API_BASE=http://192.168.1.129:3000
+API_URL=http://192.168.1.129:3000/api
